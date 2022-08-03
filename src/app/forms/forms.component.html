@@ -1,0 +1,61 @@
+<form #form="ngForm" (ngSubmit)="submitForm(form)">
+  <label>
+    <b>Nome: </b>
+    <input type="text" name="nome" #nome="ngModel" [ngModel]="nome.value" required>
+    <span *ngIf="!nome.valid && (nome.dirty && nome.touched)">
+      Invalid
+    </span>
+  </label>
+
+  <br>
+
+  <p><b>Sexo:</b></p>
+  <label>
+    Masculino:
+    <input type="radio" name="sexo" value="Masculino" ngModel>
+  </label>
+  <label>
+    Feminino:
+    <input type="radio" name="sexo" value="Feminino" ngModel>
+  </label>
+  <label>
+    Outros:
+    <input type="radio" name="sexo" value="Outros" ngModel>
+  </label>
+
+  <br>
+
+  <p><b>Linguagem:</b></p>
+  <label>
+    Angular:
+    <input type="checkbox" name="angular" ngModel>
+  </label>
+  <label>
+    Typescript:
+    <input type="checkbox" name="typescript" ngModel>
+  </label>
+  <label>
+    Javascript:
+    <input type="checkbox" name="javascript" ngModel>
+  </label>
+
+  <br>
+  <br>
+
+  <select name="comidas" ngModel>
+    <option value="">Selecione um alimento</option>
+    <option *ngFor="let item of listComidas" [ngValue]="item">
+      {{item.comida}} - {{item.preco}}
+    </option>
+  </select>
+
+  <br>
+  <br>
+  <button [disabled]="form.invalid">Enviar Dados</button>
+
+  <br>
+</form>
+
+<br>
+
+{{ form.value | json }}
